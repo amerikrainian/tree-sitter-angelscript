@@ -1,0 +1,145 @@
+================================================================================
+Const qualified types
+================================================================================
+
+const int ci;
+const bool cb;
+const float cf;
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (declaration
+    type: (type_descriptor
+      (const_keyword)
+      type: (primitive_type
+        (int_keyword)))
+    declarator: (identifier))
+  (declaration
+    type: (type_descriptor
+      (const_keyword)
+      type: (primitive_type
+        (bool_keyword)))
+    declarator: (identifier))
+  (declaration
+    type: (type_descriptor
+      (const_keyword)
+      type: (primitive_type
+        (float_keyword)))
+    declarator: (identifier)))
+
+================================================================================
+Scoped types
+================================================================================
+
+::GlobalType gt;
+Namespace::Type nt;
+Outer::Inner::Type oit;
+::Namespace::Type gnt;
+global::local<a, b, c>::b gt;
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (declaration
+    type: (type_descriptor
+      type: (qualified_type_identifier
+        (scope_resolution)
+        (type_identifier)))
+    declarator: (identifier))
+  (declaration
+    type: (type_descriptor
+      type: (qualified_type_identifier
+        (type_identifier)
+        (scope_resolution)
+        (type_identifier)))
+    declarator: (identifier))
+  (declaration
+    type: (type_descriptor
+      type: (qualified_type_identifier
+        (type_identifier)
+        (scope_resolution)
+        (type_identifier)
+        (scope_resolution)
+        (type_identifier)))
+    declarator: (identifier))
+  (declaration
+    type: (type_descriptor
+      type: (qualified_type_identifier
+        (scope_resolution)
+        (type_identifier)
+        (scope_resolution)
+        (type_identifier)))
+    declarator: (identifier))
+  (declaration
+    type: (type_descriptor
+      type: (qualified_type_identifier
+        (type_identifier)
+        (scope_resolution)
+        (template_type
+          name: (type_identifier)
+          arguments: (template_argument_list
+            (type_descriptor
+              type: (type_identifier))
+            (type_descriptor
+              type: (type_identifier))
+            (type_descriptor
+              type: (type_identifier))))
+        (scope_resolution)
+        (type_identifier)))
+    declarator: (identifier)))
+
+================================================================================
+Template types
+================================================================================
+
+Array<int> ai;
+Map<string, int> msi;
+Complex<Nested<int>, Other<float, double>> complex;
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (declaration
+    type: (type_descriptor
+      type: (template_type
+        name: (type_identifier)
+        arguments: (template_argument_list
+          (type_descriptor
+            type: (primitive_type
+              (int_keyword))))))
+    declarator: (identifier))
+  (declaration
+    type: (type_descriptor
+      type: (template_type
+        name: (type_identifier)
+        arguments: (template_argument_list
+          (type_descriptor
+            type: (type_identifier))
+          (type_descriptor
+            type: (primitive_type
+              (int_keyword))))))
+    declarator: (identifier))
+  (declaration
+    type: (type_descriptor
+      type: (template_type
+        name: (type_identifier)
+        arguments: (template_argument_list
+          (type_descriptor
+            type: (template_type
+              name: (type_identifier)
+              arguments: (template_argument_list
+                (type_descriptor
+                  type: (primitive_type
+                    (int_keyword))))))
+          (type_descriptor
+            type: (template_type
+              name: (type_identifier)
+              arguments: (template_argument_list
+                (type_descriptor
+                  type: (primitive_type
+                    (float_keyword)))
+                (type_descriptor
+                  type: (primitive_type
+                    (double_keyword)))))))))
+    declarator: (identifier)))

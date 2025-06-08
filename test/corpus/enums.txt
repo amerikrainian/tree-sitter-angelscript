@@ -1,0 +1,109 @@
+================================================================================
+Basic enum declarations
+================================================================================
+
+enum BasicEnum { }
+shared enum SharedEnum { }
+external enum ExternalEnum;
+shared external enum sharedExternalEnum;
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (enum_specifier
+    (enum_keyword)
+    name: (type_identifier)
+    body: (enumerator_list))
+  (enum_specifier
+    (shared_keyword)
+    (enum_keyword)
+    name: (type_identifier)
+    body: (enumerator_list))
+  (enum_specifier
+    (external_keyword)
+    (enum_keyword)
+    name: (type_identifier))
+  (enum_specifier
+    (shared_keyword)
+    (external_keyword)
+    (enum_keyword)
+    name: (type_identifier)))
+
+================================================================================
+Enums with values
+================================================================================
+
+enum AutoValues {
+    FIRST,
+    SECOND,
+    THIRD
+}
+
+enum ExplicitValues {
+    ZERO = 0,
+    ONE = 1,
+    TEN = 10
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (enum_specifier
+    (enum_keyword)
+    name: (type_identifier)
+    body: (enumerator_list
+      (enumerator
+        name: (identifier))
+      (enumerator
+        name: (identifier))
+      (enumerator
+        name: (identifier))))
+  (enum_specifier
+    (enum_keyword)
+    name: (type_identifier)
+    body: (enumerator_list
+      (enumerator
+        name: (identifier)
+        value: (primary_expression
+          (number_literal)))
+      (enumerator
+        name: (identifier)
+        value: (primary_expression
+          (number_literal)))
+      (enumerator
+        name: (identifier)
+        value: (primary_expression
+          (number_literal))))))
+
+================================================================================
+Enum with expressions
+================================================================================
+
+enum Expressions {
+    CALC = 2 + 3,
+    BASED_ON_PREV = CALC * 2
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (enum_specifier
+    (enum_keyword)
+    name: (type_identifier)
+    body: (enumerator_list
+      (enumerator
+        name: (identifier)
+        value: (binary_expression
+          left: (primary_expression
+            (number_literal))
+          operator: (plus_op)
+          right: (primary_expression
+            (number_literal))))
+      (enumerator
+        name: (identifier)
+        value: (binary_expression
+          left: (primary_expression
+            (identifier))
+          operator: (mul_op)
+          right: (primary_expression
+            (number_literal)))))))

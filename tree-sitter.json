@@ -1,0 +1,40 @@
+{
+  "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/config.schema.json",
+  "grammars": [
+    {
+      "name": "angelscript",
+      "camelcase": "Angelscript",
+      "title": "Angelscript",
+      "scope": "source.angelscript",
+      "file-types": [
+        "as",
+        "nvgt"
+      ],
+      "injection-regex": "^angelscript$",
+      "class-name": "TreeSitterAngelscript"
+    }
+  ],
+  "metadata": {
+    "version": "0.1.0",
+    "license": "MIT",
+    "description": "Parser for Angelscript",
+    "authors": [
+      {
+        "name": "Amerikrainian",
+        "email": "olegjpittman@gmail.com"
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/amerikrainian/tree-sitter-angelscript"
+    }
+  },
+  "bindings": {
+    "c": true,
+    "go": true,
+    "node": true,
+    "python": true,
+    "rust": true,
+    "swift": true,
+    "zig": false
+  }
+}

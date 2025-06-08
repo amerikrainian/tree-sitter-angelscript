@@ -1,0 +1,118 @@
+================================================================================
+Import declarations
+================================================================================
+
+import void externalFunc() from "module";
+import int getValue(string key) const from "data.dll";
+import Array<float>& getArray() property from "arrays";
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (import_declaration
+    (import_keyword)
+    (type_descriptor
+      (primitive_type
+        (void_keyword)))
+    (identifier)
+    (parameter_list)
+    (string_literal))
+  (import_declaration
+    (import_keyword)
+    (type_descriptor
+      (primitive_type
+        (int_keyword)))
+    (identifier)
+    (parameter_list
+      (parameter_declaration
+        (type_descriptor
+          (type_identifier))
+        (identifier)))
+    (const_keyword)
+    (string_literal))
+  (import_declaration
+    (import_keyword)
+    (type_descriptor
+      (template_type
+        (type_identifier)
+        (template_argument_list
+          (type_descriptor
+            (primitive_type
+              (float_keyword))))))
+    (reference_operator)
+    (identifier)
+    (parameter_list)
+    (function_attribute
+      (property_keyword))
+    (string_literal)))
+
+================================================================================
+Function definitions (funcdef)
+================================================================================
+
+funcdef void VoidCallback();
+funcdef int BinaryOp(int a, int b);
+funcdef float& RefReturner();
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (funcdef_declaration
+    (funcdef_keyword)
+    (type_descriptor
+      (primitive_type
+        (void_keyword)))
+    (type_identifier)
+    (parameter_list))
+  (funcdef_declaration
+    (funcdef_keyword)
+    (type_descriptor
+      (primitive_type
+        (int_keyword)))
+    (type_identifier)
+    (parameter_list
+      (parameter_declaration
+        (type_descriptor
+          (primitive_type
+            (int_keyword)))
+        (identifier))
+      (parameter_declaration
+        (type_descriptor
+          (primitive_type
+            (int_keyword)))
+        (identifier))))
+  (funcdef_declaration
+    (funcdef_keyword)
+    (type_descriptor
+      (primitive_type
+        (float_keyword)))
+    (reference_operator)
+    (type_identifier)
+    (parameter_list)))
+
+================================================================================
+Typedef declarations
+================================================================================
+
+typedef int MyInt;
+typedef float Real;
+typedef bool Flag;
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (typedef_declaration
+    (typedef_keyword)
+    (primitive_type
+      (int_keyword))
+    (type_identifier))
+  (typedef_declaration
+    (typedef_keyword)
+    (primitive_type
+      (float_keyword))
+    (type_identifier))
+  (typedef_declaration
+    (typedef_keyword)
+    (primitive_type
+      (bool_keyword))
+    (type_identifier)))

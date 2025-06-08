@@ -1,0 +1,100 @@
+================================================================================
+Basic namespace declarations
+================================================================================
+
+namespace Simple { }
+
+namespace WithContent {
+    void function() { }
+    int variable;
+    class MyClass { }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (namespace_definition
+    (namespace_keyword)
+    (namespace_identifier))
+  (namespace_definition
+    (namespace_keyword)
+    (namespace_identifier)
+    (function_definition
+      (type_descriptor
+        (primitive_type
+          (void_keyword)))
+      (function_declarator
+        (identifier)
+        (parameter_list))
+      (compound_statement))
+    (declaration
+      (type_descriptor
+        (primitive_type
+          (int_keyword)))
+      (identifier))
+    (class_definition
+      (class_keyword)
+      (type_identifier)
+      (class_body))))
+
+================================================================================
+Nested namespaces
+================================================================================
+
+namespace Outer::Inner {
+    void nestedFunction();
+}
+
+namespace Level1::Level2::Level3 {
+    int deepVariable;
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (namespace_definition
+    (namespace_keyword)
+    (namespace_identifier)
+    (scope_resolution)
+    (namespace_identifier)
+    (declaration
+      (type_descriptor
+        (primitive_type
+          (void_keyword)))
+      (identifier)
+      (argument_list)))
+  (namespace_definition
+    (namespace_keyword)
+    (namespace_identifier)
+    (scope_resolution)
+    (namespace_identifier)
+    (scope_resolution)
+    (namespace_identifier)
+    (declaration
+      (type_descriptor
+        (primitive_type
+          (int_keyword)))
+      (identifier))))
+
+================================================================================
+Using statements
+================================================================================
+
+using namespace std;
+using namespace Game::Engine::Core;
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (using_declaration
+    (using_keyword)
+    (namespace_keyword)
+    (namespace_identifier))
+  (using_declaration
+    (using_keyword)
+    (namespace_keyword)
+    (namespace_identifier)
+    (scope_resolution)
+    (namespace_identifier)
+    (scope_resolution)
+    (namespace_identifier)))

@@ -1,0 +1,196 @@
+================================================================================
+Basic function declarations
+================================================================================
+
+void basicFunc() { }
+int returnsInt() { return -1; }
+shared void sharedFunc();
+external void externalFunc();
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_definition
+    return_type: (type_descriptor
+      type: (primitive_type
+        (void_keyword)))
+    declarator: (function_declarator
+      declarator: (identifier)
+      parameters: (parameter_list))
+    body: (compound_statement))
+  (function_definition
+    return_type: (type_descriptor
+      type: (primitive_type
+        (int_keyword)))
+    declarator: (function_declarator
+      declarator: (identifier)
+      parameters: (parameter_list))
+    body: (compound_statement
+      (return_statement
+        (return_keyword)
+        (unary_expression
+          operator: (sub_op)
+          argument: (primary_expression
+            (number_literal))))))
+  (function_definition
+    (shared_keyword)
+    return_type: (type_descriptor
+      type: (primitive_type
+        (void_keyword)))
+    declarator: (function_declarator
+      declarator: (identifier)
+      parameters: (parameter_list)))
+  (function_definition
+    (external_keyword)
+    return_type: (type_descriptor
+      type: (primitive_type
+        (void_keyword)))
+    declarator: (function_declarator
+      declarator: (identifier)
+      parameters: (parameter_list))))
+
+================================================================================
+Function definitions with bodies
+================================================================================
+
+void emptyFunc() {}
+
+int add(int a, int b) {
+    return a + b;
+}
+
+foo@ bar() {
+    return null;
+}
+
+bar& foo() {
+    return null;
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_definition
+    return_type: (type_descriptor
+      type: (primitive_type
+        (void_keyword)))
+    declarator: (function_declarator
+      declarator: (identifier)
+      parameters: (parameter_list))
+    body: (compound_statement))
+  (function_definition
+    return_type: (type_descriptor
+      type: (primitive_type
+        (int_keyword)))
+    declarator: (function_declarator
+      declarator: (identifier)
+      parameters: (parameter_list
+        (parameter_declaration
+          type: (type_descriptor
+            type: (primitive_type
+              (int_keyword)))
+          declarator: (identifier))
+        (parameter_declaration
+          type: (type_descriptor
+            type: (primitive_type
+              (int_keyword)))
+          declarator: (identifier))))
+    body: (compound_statement
+      (return_statement
+        (return_keyword)
+        (binary_expression
+          left: (primary_expression
+            (identifier))
+          operator: (plus_op)
+          right: (primary_expression
+            (identifier))))))
+  (function_definition
+    return_type: (type_descriptor
+      type: (type_identifier)
+      (handle_suffix))
+    declarator: (function_declarator
+      declarator: (identifier)
+      parameters: (parameter_list))
+    body: (compound_statement
+      (return_statement
+        (return_keyword)
+        (primary_expression
+          (null_literal
+            (null_keyword))))))
+  (function_definition
+    return_type: (type_descriptor
+      type: (type_identifier))
+    (reference_operator)
+    declarator: (function_declarator
+      declarator: (identifier)
+      parameters: (parameter_list))
+    body: (compound_statement
+      (return_statement
+        (return_keyword)
+        (primary_expression
+          (null_literal
+            (null_keyword)))))))
+
+================================================================================
+Functions With Handles
+================================================================================
+
+void d(obj@ a) {
+    !@obj;
+    @obj.field;
+    @func(args);
+    @@handle;
+    @a + @b;
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_definition
+    (type_descriptor
+      (primitive_type
+        (void_keyword)))
+    (function_declarator
+      (identifier)
+      (parameter_list
+        (parameter_declaration
+          (type_descriptor
+            (type_identifier)
+            (handle_suffix))
+          (identifier))))
+    (compound_statement
+      (expression_statement
+        (unary_expression
+          (not_op)
+          (handle_dereference_expression
+            (primary_expression
+              (identifier)))))
+      (expression_statement
+        (handle_dereference_expression
+          (field_expression
+            (primary_expression
+              (identifier))
+            (field_identifier))))
+      (expression_statement
+        (handle_dereference_expression
+          (call_expression
+            (primary_expression
+              (identifier))
+            (argument_list
+              (argument
+                (primary_expression
+                  (identifier)))))))
+      (expression_statement
+        (handle_dereference_expression
+          (handle_dereference_expression
+            (primary_expression
+              (identifier)))))
+      (expression_statement
+        (binary_expression
+          (handle_dereference_expression
+            (primary_expression
+              (identifier)))
+          (plus_op)
+          (handle_dereference_expression
+            (primary_expression
+              (identifier))))))))

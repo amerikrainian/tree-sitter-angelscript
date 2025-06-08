@@ -1,0 +1,46 @@
+================================================================================
+Line comments
+================================================================================
+
+// Single line comment
+int x; // End of line comment
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (comment)
+  (declaration
+    (type_descriptor
+      (primitive_type
+        (int_keyword)))
+    (identifier))
+  (comment))
+
+================================================================================
+Block comments
+================================================================================
+
+/* Block comment */
+int y;
+
+/*
+ * Multi-line
+ * block comment
+ */
+float z;
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (comment)
+  (declaration
+    (type_descriptor
+      (primitive_type
+        (int_keyword)))
+    (identifier))
+  (comment)
+  (declaration
+    (type_descriptor
+      (primitive_type
+        (float_keyword)))
+    (identifier)))

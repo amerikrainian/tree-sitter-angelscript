@@ -1,0 +1,131 @@
+================================================================================
+Expression initialization
+================================================================================
+
+int x = 5;
+float f = 3.14;
+bool b = true;
+string s = "hello";
+int calculated = 2 + 3 * 4;
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (declaration
+    type: (type_descriptor
+      type: (primitive_type
+        (int_keyword)))
+    declarator: (identifier)
+    value: (primary_expression
+      (number_literal)))
+  (declaration
+    type: (type_descriptor
+      type: (primitive_type
+        (float_keyword)))
+    declarator: (identifier)
+    value: (primary_expression
+      (number_literal)))
+  (declaration
+    type: (type_descriptor
+      type: (primitive_type
+        (bool_keyword)))
+    declarator: (identifier)
+    value: (primary_expression
+      (boolean_literal
+        (true_keyword))))
+  (declaration
+    type: (type_descriptor
+      type: (type_identifier))
+    declarator: (identifier)
+    value: (primary_expression
+      (string_literal)))
+  (declaration
+    type: (type_descriptor
+      type: (primitive_type
+        (int_keyword)))
+    declarator: (identifier)
+    value: (binary_expression
+      left: (primary_expression
+        (number_literal))
+      operator: (plus_op)
+      right: (binary_expression
+        left: (primary_expression
+          (number_literal))
+        operator: (mul_op)
+        right: (primary_expression
+          (number_literal))))))
+
+================================================================================
+Constructor initialization
+================================================================================
+
+Vector3 v(1, 2, 3);
+Array<int> arr(10);
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (declaration
+    type: (type_descriptor
+      type: (type_identifier))
+    declarator: (identifier)
+    arguments: (argument_list
+      (argument
+        value: (primary_expression
+          (number_literal)))
+      (argument
+        value: (primary_expression
+          (number_literal)))
+      (argument
+        value: (primary_expression
+          (number_literal)))))
+  (declaration
+    type: (type_descriptor
+      type: (template_type
+        name: (type_identifier)
+        arguments: (template_argument_list
+          (type_descriptor
+            type: (primitive_type
+              (int_keyword))))))
+    declarator: (identifier)
+    arguments: (argument_list
+      (argument
+        value: (primary_expression
+          (number_literal))))))
+
+================================================================================
+Init list initialization
+================================================================================
+
+int[] arr = {1, 2, 3, 4};
+Vector3 v = {1.0, 2.0, 3.0};
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (declaration
+    type: (type_descriptor
+      type: (primitive_type
+        (int_keyword))
+      (array_suffix))
+    declarator: (identifier)
+    value: (initializer_list
+      (primary_expression
+        (number_literal))
+      (primary_expression
+        (number_literal))
+      (primary_expression
+        (number_literal))
+      (primary_expression
+        (number_literal))))
+  (declaration
+    type: (type_descriptor
+      type: (type_identifier))
+    declarator: (identifier)
+    value: (initializer_list
+      (primary_expression
+        (number_literal))
+      (primary_expression
+        (number_literal))
+      (primary_expression
+        (number_literal)))))

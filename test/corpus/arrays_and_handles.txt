@@ -1,0 +1,124 @@
+================================================================================
+Array declarations
+================================================================================
+
+int[] arr1;
+int[][] arr2d;
+int[][][] arr3d;
+const int[] carr;
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (declaration
+    type: (type_descriptor
+      type: (primitive_type
+        (int_keyword))
+      (array_suffix))
+    declarator: (identifier))
+  (declaration
+    type: (type_descriptor
+      type: (primitive_type
+        (int_keyword))
+      (array_suffix)
+      (array_suffix))
+    declarator: (identifier))
+  (declaration
+    type: (type_descriptor
+      type: (primitive_type
+        (int_keyword))
+      (array_suffix)
+      (array_suffix)
+      (array_suffix))
+    declarator: (identifier))
+  (declaration
+    type: (type_descriptor
+      (const_keyword)
+      type: (primitive_type
+        (int_keyword))
+      (array_suffix))
+    declarator: (identifier)))
+
+================================================================================
+Handle declarations
+================================================================================
+
+int@ handle;
+int@const chandle;
+const int@ const_handle;
+const int@const const_const_handle;
+CustomType@ obj;
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (declaration
+    type: (type_descriptor
+      type: (primitive_type
+        (int_keyword))
+      (handle_suffix))
+    declarator: (identifier))
+  (declaration
+    type: (type_descriptor
+      type: (primitive_type
+        (int_keyword))
+      (handle_suffix
+        (const_keyword)))
+    declarator: (identifier))
+  (declaration
+    type: (type_descriptor
+      (const_keyword)
+      type: (primitive_type
+        (int_keyword))
+      (handle_suffix))
+    declarator: (identifier))
+  (declaration
+    type: (type_descriptor
+      (const_keyword)
+      type: (primitive_type
+        (int_keyword))
+      (handle_suffix
+        (const_keyword)))
+    declarator: (identifier))
+  (declaration
+    type: (type_descriptor
+      type: (type_identifier)
+      (handle_suffix))
+    declarator: (identifier)))
+
+================================================================================
+Combined arrays and handles
+================================================================================
+
+int[]@ arr_handle;
+Array<int>@ thandle;
+Namespace::Type[] nsarr;
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (declaration
+    type: (type_descriptor
+      type: (primitive_type
+        (int_keyword))
+      (array_suffix)
+      (handle_suffix))
+    declarator: (identifier))
+  (declaration
+    type: (type_descriptor
+      type: (template_type
+        name: (type_identifier)
+        arguments: (template_argument_list
+          (type_descriptor
+            type: (primitive_type
+              (int_keyword)))))
+      (handle_suffix))
+    declarator: (identifier))
+  (declaration
+    type: (type_descriptor
+      type: (qualified_type_identifier
+        (type_identifier)
+        (scope_resolution)
+        (type_identifier))
+      (array_suffix))
+    declarator: (identifier)))

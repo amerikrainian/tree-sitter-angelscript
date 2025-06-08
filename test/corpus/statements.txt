@@ -1,0 +1,325 @@
+================================================================================
+Control flow statements
+================================================================================
+
+void testFunction() {
+    if (true) return;
+    if (x > 0) {
+        y = 1;
+    } else {
+        y = 0;
+    }
+
+    while (condition) break;
+
+    do {
+        continue;
+    } while (false);
+
+    for (int i = 0; i < 10; i++) {
+        y *= 2;
+    }
+
+    for (int i = 0, j = 5; i < 10 && j <= 100; i ++, j *= 5) {
+        print(i, j);
+    }
+
+    foreach (int value : array) {
+        process(value);
+    }
+
+    foreach (string key, int value: dict) {
+        print("key: " + key + ", value: " + value);
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_definition
+    (type_descriptor
+      (primitive_type
+        (void_keyword)))
+    (function_declarator
+      (identifier)
+      (parameter_list))
+    (compound_statement
+      (if_statement
+        (if_keyword)
+        (primary_expression
+          (boolean_literal
+            (true_keyword)))
+        (return_statement
+          (return_keyword)))
+      (if_statement
+        (if_keyword)
+        (binary_expression
+          (primary_expression
+            (identifier))
+          (gt_op)
+          (primary_expression
+            (number_literal)))
+        (compound_statement
+          (expression_statement
+            (assignment_expression
+              (identifier)
+              (equal_op)
+              (primary_expression
+                (number_literal)))))
+        (else_keyword)
+        (compound_statement
+          (expression_statement
+            (assignment_expression
+              (identifier)
+              (equal_op)
+              (primary_expression
+                (number_literal))))))
+      (while_statement
+        (while_keyword)
+        (primary_expression
+          (identifier))
+        (break_statement
+          (break_keyword)))
+      (do_while_statement
+        (do_keyword)
+        (compound_statement
+          (continue_statement
+            (continue_keyword)))
+        (while_keyword)
+        (primary_expression
+          (boolean_literal
+            (false_keyword))))
+      (for_statement
+        (for_keyword)
+        (declaration
+          (type_descriptor
+            (primitive_type
+              (int_keyword)))
+          (identifier)
+          (primary_expression
+            (number_literal)))
+        (binary_expression
+          (primary_expression
+            (identifier))
+          (lt_op)
+          (primary_expression
+            (number_literal)))
+        (postfix_expression
+          (primary_expression
+            (identifier))
+          (inc_op))
+        (compound_statement
+          (expression_statement
+            (assignment_expression
+              (identifier)
+              (mul_equal_op)
+              (primary_expression
+                (number_literal))))))
+      (for_statement
+        (for_keyword)
+        (declaration
+          (type_descriptor
+            (primitive_type
+              (int_keyword)))
+          (identifier)
+          (primary_expression
+            (number_literal))
+          (identifier)
+          (primary_expression
+            (number_literal)))
+        (binary_expression
+          (binary_expression
+            (primary_expression
+              (identifier))
+            (lt_op)
+            (primary_expression
+              (number_literal)))
+          (andand_op)
+          (binary_expression
+            (primary_expression
+              (identifier))
+            (lte_op)
+            (primary_expression
+              (number_literal))))
+        (postfix_expression
+          (primary_expression
+            (identifier))
+          (inc_op))
+        (assignment_expression
+          (identifier)
+          (mul_equal_op)
+          (primary_expression
+            (number_literal)))
+        (compound_statement
+          (expression_statement
+            (call_expression
+              (primary_expression
+                (identifier))
+              (argument_list
+                (argument
+                  (primary_expression
+                    (identifier)))
+                (argument
+                  (primary_expression
+                    (identifier))))))))
+      (foreach_statement
+        (foreach_keyword)
+        (type_descriptor
+          (primitive_type
+            (int_keyword)))
+        (identifier)
+        (primary_expression
+          (identifier))
+        (compound_statement
+          (expression_statement
+            (call_expression
+              (primary_expression
+                (identifier))
+              (argument_list
+                (argument
+                  (primary_expression
+                    (identifier))))))))
+      (foreach_statement
+        (foreach_keyword)
+        (type_descriptor
+          (type_identifier))
+        (identifier)
+        (type_descriptor
+          (primitive_type
+            (int_keyword)))
+        (identifier)
+        (primary_expression
+          (identifier))
+        (compound_statement
+          (expression_statement
+            (call_expression
+              (primary_expression
+                (identifier))
+              (argument_list
+                (argument
+                  (binary_expression
+                    (binary_expression
+                      (binary_expression
+                        (primary_expression
+                          (string_literal))
+                        (plus_op)
+                        (primary_expression
+                          (identifier)))
+                      (plus_op)
+                      (primary_expression
+                        (string_literal)))
+                    (plus_op)
+                    (primary_expression
+                      (identifier))))))))))))
+
+================================================================================
+Switch statements
+================================================================================
+
+void switchTest(int x) {
+    switch (x) {
+        case 1:
+            doOne();
+            break;
+        case 2:
+        case 3:
+            doTwo();
+            break;
+        default:
+            doDefault();
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_definition
+    (type_descriptor
+      (primitive_type
+        (void_keyword)))
+    (function_declarator
+      (identifier)
+      (parameter_list
+        (parameter_declaration
+          (type_descriptor
+            (primitive_type
+              (int_keyword)))
+          (identifier))))
+    (compound_statement
+      (switch_statement
+        (switch_keyword)
+        (primary_expression
+          (identifier))
+        (switch_body
+          (case_statement
+            (case_keyword)
+            (primary_expression
+              (number_literal))
+            (expression_statement
+              (call_expression
+                (primary_expression
+                  (identifier))
+                (argument_list)))
+            (break_statement
+              (break_keyword)))
+          (case_statement
+            (case_keyword)
+            (primary_expression
+              (number_literal)))
+          (case_statement
+            (case_keyword)
+            (primary_expression
+              (number_literal))
+            (expression_statement
+              (call_expression
+                (primary_expression
+                  (identifier))
+                (argument_list)))
+            (break_statement
+              (break_keyword)))
+          (case_statement
+            (default_keyword)
+            (expression_statement
+              (call_expression
+                (primary_expression
+                  (identifier))
+                (argument_list)))))))))
+
+================================================================================
+Try-catch statements
+================================================================================
+
+void errorHandling() {
+    try {
+        riskyOperation();
+    } catch {
+        handleError();
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_definition
+    (type_descriptor
+      (primitive_type
+        (void_keyword)))
+    (function_declarator
+      (identifier)
+      (parameter_list))
+    (compound_statement
+      (try_statement
+        (try_keyword)
+        (compound_statement
+          (expression_statement
+            (call_expression
+              (primary_expression
+                (identifier))
+              (argument_list))))
+        (catch_keyword)
+        (compound_statement
+          (expression_statement
+            (call_expression
+              (primary_expression
+                (identifier))
+              (argument_list))))))))

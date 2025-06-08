@@ -1,0 +1,773 @@
+================================================================================
+Binary expressions
+================================================================================
+
+void testBinary() {
+    int result = a + b * c - d / e % f;
+    bool logic = x && y || z ^^ w;
+    int bitwise = a & b | c ^ d;
+    bool comparison = x < y && y <= z && z > w && w >= v;
+    bool equality = a == b && c != d && e is f && g !is h;
+    int shift = a << 2 >> 1 >>> 3;
+    float power = base ** exponent;
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_definition
+    (type_descriptor
+      (primitive_type
+        (void_keyword)))
+    (function_declarator
+      (identifier)
+      (parameter_list))
+    (compound_statement
+      (declaration
+        (type_descriptor
+          (primitive_type
+            (int_keyword)))
+        (identifier)
+        (binary_expression
+          (binary_expression
+            (primary_expression
+              (identifier))
+            (plus_op)
+            (binary_expression
+              (primary_expression
+                (identifier))
+              (mul_op)
+              (primary_expression
+                (identifier))))
+          (sub_op)
+          (binary_expression
+            (binary_expression
+              (primary_expression
+                (identifier))
+              (div_op)
+              (primary_expression
+                (identifier)))
+            (mod_op)
+            (primary_expression
+              (identifier)))))
+      (declaration
+        (type_descriptor
+          (primitive_type
+            (bool_keyword)))
+        (identifier)
+        (binary_expression
+          (binary_expression
+            (primary_expression
+              (identifier))
+            (andand_op)
+            (primary_expression
+              (identifier)))
+          (oror_op)
+          (binary_expression
+            (primary_expression
+              (identifier))
+            (xorxor_op)
+            (primary_expression
+              (identifier)))))
+      (declaration
+        (type_descriptor
+          (primitive_type
+            (int_keyword)))
+        (identifier)
+        (binary_expression
+          (binary_expression
+            (primary_expression
+              (identifier))
+            (bitand_op)
+            (primary_expression
+              (identifier)))
+          (bitor_op)
+          (binary_expression
+            (primary_expression
+              (identifier))
+            (bitxor_op)
+            (primary_expression
+              (identifier)))))
+      (declaration
+        (type_descriptor
+          (primitive_type
+            (bool_keyword)))
+        (identifier)
+        (binary_expression
+          (binary_expression
+            (binary_expression
+              (binary_expression
+                (primary_expression
+                  (identifier))
+                (lt_op)
+                (primary_expression
+                  (identifier)))
+              (andand_op)
+              (binary_expression
+                (primary_expression
+                  (identifier))
+                (lte_op)
+                (primary_expression
+                  (identifier))))
+            (andand_op)
+            (binary_expression
+              (primary_expression
+                (identifier))
+              (gt_op)
+              (primary_expression
+                (identifier))))
+          (andand_op)
+          (binary_expression
+            (primary_expression
+              (identifier))
+            (gte_op)
+            (primary_expression
+              (identifier)))))
+      (declaration
+        (type_descriptor
+          (primitive_type
+            (bool_keyword)))
+        (identifier)
+        (binary_expression
+          (binary_expression
+            (binary_expression
+              (binary_expression
+                (primary_expression
+                  (identifier))
+                (eq_op)
+                (primary_expression
+                  (identifier)))
+              (andand_op)
+              (binary_expression
+                (primary_expression
+                  (identifier))
+                (neq_op)
+                (primary_expression
+                  (identifier))))
+            (andand_op)
+            (binary_expression
+              (primary_expression
+                (identifier))
+              (is_operator)
+              (primary_expression
+                (identifier))))
+          (andand_op)
+          (binary_expression
+            (primary_expression
+              (identifier))
+            (not_is_operator)
+            (primary_expression
+              (identifier)))))
+      (declaration
+        (type_descriptor
+          (primitive_type
+            (int_keyword)))
+        (identifier)
+        (binary_expression
+          (binary_expression
+            (binary_expression
+              (primary_expression
+                (identifier))
+              (lsl_op)
+              (primary_expression
+                (number_literal)))
+            (lsr_op)
+            (primary_expression
+              (number_literal)))
+          (asr_op)
+          (primary_expression
+            (number_literal))))
+      (declaration
+        (type_descriptor
+          (primitive_type
+            (float_keyword)))
+        (identifier)
+        (binary_expression
+          (primary_expression
+            (identifier))
+          (exp_op)
+          (primary_expression
+            (identifier)))))))
+
+================================================================================
+Unary expressions
+================================================================================
+
+void testUnary() {
+    int neg = -x;
+    bool not = !flag;
+    int pos = +value;
+    int preInc = ++counter;
+    int preDec = --counter;
+    int complement = ~bits;
+    Object@ handle = @object;
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_definition
+    (type_descriptor
+      (primitive_type
+        (void_keyword)))
+    (function_declarator
+      (identifier)
+      (parameter_list))
+    (compound_statement
+      (declaration
+        (type_descriptor
+          (primitive_type
+            (int_keyword)))
+        (identifier)
+        (unary_expression
+          (sub_op)
+          (primary_expression
+            (identifier))))
+      (declaration
+        (type_descriptor
+          (primitive_type
+            (bool_keyword)))
+        (identifier)
+        (unary_expression
+          (not_op)
+          (primary_expression
+            (identifier))))
+      (declaration
+        (type_descriptor
+          (primitive_type
+            (int_keyword)))
+        (identifier)
+        (unary_expression
+          (plus_op)
+          (primary_expression
+            (identifier))))
+      (declaration
+        (type_descriptor
+          (primitive_type
+            (int_keyword)))
+        (identifier)
+        (unary_expression
+          (inc_op)
+          (primary_expression
+            (identifier))))
+      (declaration
+        (type_descriptor
+          (primitive_type
+            (int_keyword)))
+        (identifier)
+        (unary_expression
+          (dec_op)
+          (primary_expression
+            (identifier))))
+      (declaration
+        (type_descriptor
+          (primitive_type
+            (int_keyword)))
+        (identifier)
+        (unary_expression
+          (bitnot_op)
+          (primary_expression
+            (identifier))))
+      (declaration
+        (type_descriptor
+          (type_identifier)
+          (handle_suffix))
+        (identifier)
+        (handle_dereference_expression
+          (primary_expression
+            (identifier)))))))
+
+================================================================================
+Postfix expressions
+================================================================================
+
+void testPostfix() {
+    int postInc = counter++;
+    int postDec = counter--;
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_definition
+    (type_descriptor
+      (primitive_type
+        (void_keyword)))
+    (function_declarator
+      (identifier)
+      (parameter_list))
+    (compound_statement
+      (declaration
+        (type_descriptor
+          (primitive_type
+            (int_keyword)))
+        (identifier)
+        (postfix_expression
+          (primary_expression
+            (identifier))
+          (inc_op)))
+      (declaration
+        (type_descriptor
+          (primitive_type
+            (int_keyword)))
+        (identifier)
+        (postfix_expression
+          (primary_expression
+            (identifier))
+          (dec_op))))))
+
+================================================================================
+Assignment expressions
+================================================================================
+
+void testAssignments() {
+    x = 5;
+    x += 10;
+    x -= 3;
+    x *= 2;
+    x /= 4;
+    x %= 3;
+    x **= 2;
+    x &= mask;
+    x |= flags;
+    x ^= toggle;
+    x <<= 1;
+    x >>= 2;
+    x >>>= 1;
+    
+    arr = {1, 2, 3};
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_definition
+    (type_descriptor
+      (primitive_type
+        (void_keyword)))
+    (function_declarator
+      (identifier)
+      (parameter_list))
+    (compound_statement
+      (expression_statement
+        (assignment_expression
+          (identifier)
+          (equal_op)
+          (primary_expression
+            (number_literal))))
+      (expression_statement
+        (assignment_expression
+          (identifier)
+          (plus_equal_op)
+          (primary_expression
+            (number_literal))))
+      (expression_statement
+        (assignment_expression
+          (identifier)
+          (sub_equal_op)
+          (primary_expression
+            (number_literal))))
+      (expression_statement
+        (assignment_expression
+          (identifier)
+          (mul_equal_op)
+          (primary_expression
+            (number_literal))))
+      (expression_statement
+        (assignment_expression
+          (identifier)
+          (div_equal_op)
+          (primary_expression
+            (number_literal))))
+      (expression_statement
+        (assignment_expression
+          (identifier)
+          (mod_equal_op)
+          (primary_expression
+            (number_literal))))
+      (expression_statement
+        (assignment_expression
+          (identifier)
+          (exp_equal_op)
+          (primary_expression
+            (number_literal))))
+      (expression_statement
+        (assignment_expression
+          (identifier)
+          (bitand_equal_op)
+          (primary_expression
+            (identifier))))
+      (expression_statement
+        (assignment_expression
+          (identifier)
+          (bitor_equal_op)
+          (primary_expression
+            (identifier))))
+      (expression_statement
+        (assignment_expression
+          (identifier)
+          (bitxor_equal_op)
+          (primary_expression
+            (identifier))))
+      (expression_statement
+        (assignment_expression
+          (identifier)
+          (lsl_equal_op)
+          (primary_expression
+            (number_literal))))
+      (expression_statement
+        (assignment_expression
+          (identifier)
+          (lsr_equal_op)
+          (primary_expression
+            (number_literal))))
+      (expression_statement
+        (assignment_expression
+          (identifier)
+          (asr_equal_op)
+          (primary_expression
+            (number_literal))))
+      (expression_statement
+        (assignment_expression
+          (identifier)
+          (equal_op)
+          (primary_expression
+            (initializer_list
+              (primary_expression
+                (number_literal))
+              (primary_expression
+                (number_literal))
+              (primary_expression
+                (number_literal)))))))))
+
+================================================================================
+Ternary expressions
+================================================================================
+
+void testTernary() {
+    int result = condition ? trueValue : falseValue;
+    string message = error ? "Error" : success ? "Success" : "Unknown";
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_definition
+    (type_descriptor
+      (primitive_type
+        (void_keyword)))
+    (function_declarator
+      (identifier)
+      (parameter_list))
+    (compound_statement
+      (declaration
+        (type_descriptor
+          (primitive_type
+            (int_keyword)))
+        (identifier)
+        (conditional_expression
+          (primary_expression
+            (identifier))
+          (primary_expression
+            (identifier))
+          (primary_expression
+            (identifier))))
+      (declaration
+        (type_descriptor
+          (type_identifier))
+        (identifier)
+        (conditional_expression
+          (primary_expression
+            (identifier))
+          (primary_expression
+            (string_literal))
+          (conditional_expression
+            (primary_expression
+              (identifier))
+            (primary_expression
+              (string_literal))
+            (primary_expression
+              (string_literal))))))))
+
+================================================================================
+Call expressions
+================================================================================
+
+void testCalls() {
+    basicCall();
+    withArgs(a, b, c);
+    namedArgs(first: 1, second: 2);
+    mixed(1, named: 2, 3);
+    chained().method().another();
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_definition
+    (type_descriptor
+      (primitive_type
+        (void_keyword)))
+    (function_declarator
+      (identifier)
+      (parameter_list))
+    (compound_statement
+      (expression_statement
+        (call_expression
+          (primary_expression
+            (identifier))
+          (argument_list)))
+      (expression_statement
+        (call_expression
+          (primary_expression
+            (identifier))
+          (argument_list
+            (argument
+              (primary_expression
+                (identifier)))
+            (argument
+              (primary_expression
+                (identifier)))
+            (argument
+              (primary_expression
+                (identifier))))))
+      (expression_statement
+        (call_expression
+          (primary_expression
+            (identifier))
+          (argument_list
+            (argument
+              (identifier)
+              (primary_expression
+                (number_literal)))
+            (argument
+              (identifier)
+              (primary_expression
+                (number_literal))))))
+      (expression_statement
+        (call_expression
+          (primary_expression
+            (identifier))
+          (argument_list
+            (argument
+              (primary_expression
+                (number_literal)))
+            (argument
+              (identifier)
+              (primary_expression
+                (number_literal)))
+            (argument
+              (primary_expression
+                (number_literal))))))
+      (expression_statement
+        (call_expression
+          (field_expression
+            (call_expression
+              (field_expression
+                (call_expression
+                  (primary_expression
+                    (identifier))
+                  (argument_list))
+                (field_identifier))
+              (argument_list))
+            (field_identifier))
+          (argument_list))))))
+
+================================================================================
+Field and subscript expressions
+================================================================================
+
+void testAccess() {
+    int value = object.field.subfield;
+    int element = array[0];
+    int multi = matrix[i, j];
+    object.array[index].field = value;
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_definition
+    (type_descriptor
+      (primitive_type
+        (void_keyword)))
+    (function_declarator
+      (identifier)
+      (parameter_list))
+    (compound_statement
+      (declaration
+        (type_descriptor
+          (primitive_type
+            (int_keyword)))
+        (identifier)
+        (field_expression
+          (field_expression
+            (primary_expression
+              (identifier))
+            (field_identifier))
+          (field_identifier)))
+      (declaration
+        (type_descriptor
+          (primitive_type
+            (int_keyword)))
+        (identifier)
+        (subscript_expression
+          (primary_expression
+            (identifier))
+          (argument
+            (primary_expression
+              (number_literal)))))
+      (declaration
+        (type_descriptor
+          (primitive_type
+            (int_keyword)))
+        (identifier)
+        (subscript_expression
+          (primary_expression
+            (identifier))
+          (argument
+            (primary_expression
+              (identifier)))
+          (argument
+            (primary_expression
+              (identifier)))))
+      (expression_statement
+        (assignment_expression
+          (field_expression
+            (subscript_expression
+              (field_expression
+                (primary_expression
+                  (identifier))
+                (field_identifier))
+              (argument
+                (primary_expression
+                  (identifier))))
+            (field_identifier))
+          (equal_op)
+          (primary_expression
+            (identifier)))))))
+
+================================================================================
+Cast expressions
+================================================================================
+
+void testCasts() {
+    float f = cast<float>(intValue);
+    Object@ obj = cast<Object@>(handle);
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_definition
+    (type_descriptor
+      (primitive_type
+        (void_keyword)))
+    (function_declarator
+      (identifier)
+      (parameter_list))
+    (compound_statement
+      (declaration
+        (type_descriptor
+          (primitive_type
+            (float_keyword)))
+        (identifier)
+        (cast_expression
+          (cast_keyword)
+          (type_descriptor
+            (primitive_type
+              (float_keyword)))
+          (primary_expression
+            (identifier))))
+      (declaration
+        (type_descriptor
+          (type_identifier)
+          (handle_suffix))
+        (identifier)
+        (cast_expression
+          (cast_keyword)
+          (type_descriptor
+            (type_identifier)
+            (handle_suffix))
+          (primary_expression
+            (identifier)))))))
+
+================================================================================
+Constructor calls
+================================================================================
+
+void testConstructors() {
+    Vector3 v = Vector3(1, 2, 3);
+    Array<int> arr = Array<int>(10);
+    auto obj = ComplexType<T>(arg1, arg2);
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_definition
+    (type_descriptor
+      (primitive_type
+        (void_keyword)))
+    (function_declarator
+      (identifier)
+      (parameter_list))
+    (compound_statement
+      (declaration
+        (type_descriptor
+          (type_identifier))
+        (identifier)
+        (call_expression
+          (primary_expression
+            (identifier))
+          (argument_list
+            (argument
+              (primary_expression
+                (number_literal)))
+            (argument
+              (primary_expression
+                (number_literal)))
+            (argument
+              (primary_expression
+                (number_literal))))))
+      (declaration
+        (type_descriptor
+          (template_type
+            (type_identifier)
+            (template_argument_list
+              (type_descriptor
+                (primitive_type
+                  (int_keyword))))))
+        (identifier)
+        (call_expression
+          (primary_expression
+            (template_function
+              (identifier)
+              (template_argument_list
+                (type_descriptor
+                  (primitive_type
+                    (int_keyword))))))
+          (argument_list
+            (argument
+              (primary_expression
+                (number_literal))))))
+      (declaration
+        (type_descriptor
+          (auto_type
+            (auto_keyword)))
+        (identifier)
+        (binary_expression
+          (binary_expression
+            (primary_expression
+              (identifier))
+            (lt_op)
+            (primary_expression
+              (identifier)))
+          (gt_op)
+          (primary_expression
+            (parenthesized_expression
+              (comma_expression
+                (primary_expression
+                  (identifier))
+                (primary_expression
+                  (identifier))))))))))

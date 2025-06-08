@@ -1,0 +1,199 @@
+================================================================================
+Function attributes
+================================================================================
+
+class AttributeTest {
+    void baseMethod() { }
+    void overrideMethod() override { }
+    void finalMethod() final { }
+    void explicitMethod() explicit { }
+    void propertyMethod() property { }
+    void deletedMethod() delete { }
+    void complexMethod() override final { }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (class_definition
+    (class_keyword)
+    (type_identifier)
+    (class_body
+      (function_definition
+        (type_descriptor
+          (primitive_type
+            (void_keyword)))
+        (function_declarator
+          (identifier)
+          (parameter_list))
+        (compound_statement))
+      (function_definition
+        (type_descriptor
+          (primitive_type
+            (void_keyword)))
+        (function_declarator
+          (identifier)
+          (parameter_list)
+          (function_attribute
+            (override_keyword)))
+        (compound_statement))
+      (function_definition
+        (type_descriptor
+          (primitive_type
+            (void_keyword)))
+        (function_declarator
+          (identifier)
+          (parameter_list)
+          (function_attribute
+            (final_keyword)))
+        (compound_statement))
+      (function_definition
+        (type_descriptor
+          (primitive_type
+            (void_keyword)))
+        (function_declarator
+          (identifier)
+          (parameter_list)
+          (function_attribute
+            (explicit_keyword)))
+        (compound_statement))
+      (function_definition
+        (type_descriptor
+          (primitive_type
+            (void_keyword)))
+        (function_declarator
+          (identifier)
+          (parameter_list)
+          (function_attribute
+            (property_keyword)))
+        (compound_statement))
+      (function_definition
+        (type_descriptor
+          (primitive_type
+            (void_keyword)))
+        (function_declarator
+          (identifier)
+          (parameter_list)
+          (function_attribute
+            (delete_keyword)))
+        (compound_statement))
+      (function_definition
+        (type_descriptor
+          (primitive_type
+            (void_keyword)))
+        (function_declarator
+          (identifier)
+          (parameter_list)
+          (function_attribute
+            (override_keyword))
+          (function_attribute
+            (final_keyword)))
+        (compound_statement)))))
+
+================================================================================
+Function parameter modifiers
+================================================================================
+
+void parameterTest(
+    int normal,
+    int& reference,
+    int& in inputRef,
+    int& out outputRef,
+    int& inout bidirectionalRef
+) { }
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_definition
+    (type_descriptor
+      (primitive_type
+        (void_keyword)))
+    (function_declarator
+      (identifier)
+      (parameter_list
+        (parameter_declaration
+          (type_descriptor
+            (primitive_type
+              (int_keyword)))
+          (identifier))
+        (parameter_declaration
+          (type_descriptor
+            (primitive_type
+              (int_keyword)))
+          (reference_declarator
+            (reference_operator)
+            (identifier)))
+        (parameter_declaration
+          (type_descriptor
+            (primitive_type
+              (int_keyword)))
+          (reference_declarator
+            (reference_operator)
+            (in_keyword)
+            (identifier)))
+        (parameter_declaration
+          (type_descriptor
+            (primitive_type
+              (int_keyword)))
+          (reference_declarator
+            (reference_operator)
+            (out_keyword)
+            (identifier)))
+        (parameter_declaration
+          (type_descriptor
+            (primitive_type
+              (int_keyword)))
+          (reference_declarator
+            (reference_operator)
+            (in_out_keyword)
+            (identifier)))))
+    (compound_statement)))
+
+================================================================================
+Const functions
+================================================================================
+
+class ConstTest {
+    void normalMethod() { }
+    void constMethod() const { }
+    void constWithAttributes() const override final { }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (class_definition
+    (class_keyword)
+    (type_identifier)
+    (class_body
+      (function_definition
+        (type_descriptor
+          (primitive_type
+            (void_keyword)))
+        (function_declarator
+          (identifier)
+          (parameter_list))
+        (compound_statement))
+      (function_definition
+        (type_descriptor
+          (primitive_type
+            (void_keyword)))
+        (function_declarator
+          (identifier)
+          (parameter_list)
+          (const_keyword))
+        (compound_statement))
+      (function_definition
+        (type_descriptor
+          (primitive_type
+            (void_keyword)))
+        (function_declarator
+          (identifier)
+          (parameter_list)
+          (const_keyword)
+          (function_attribute
+            (override_keyword))
+          (function_attribute
+            (final_keyword)))
+        (compound_statement)))))

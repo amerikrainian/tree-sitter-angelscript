@@ -1,0 +1,39 @@
+================================================================================
+Basic mixin declarations
+================================================================================
+
+mixin class MixinClass { }
+
+mixin class WithMembers {
+    void mixinMethod() { }
+    int mixinField;
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (mixin_definition
+    (mixin_keyword)
+    (class_definition
+      (class_keyword)
+      (type_identifier)
+      (class_body)))
+  (mixin_definition
+    (mixin_keyword)
+    (class_definition
+      (class_keyword)
+      (type_identifier)
+      (class_body
+        (function_definition
+          (type_descriptor
+            (primitive_type
+              (void_keyword)))
+          (function_declarator
+            (identifier)
+            (parameter_list))
+          (compound_statement))
+        (declaration
+          (type_descriptor
+            (primitive_type
+              (int_keyword)))
+          (identifier))))))

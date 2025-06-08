@@ -1,0 +1,175 @@
+================================================================================
+Number literals
+================================================================================
+
+int decimal = 123;
+float floatVal = 3.14;
+float scientific = 1.23e-4;
+float dotStart = .5;
+double exponential = 2.5E+10;
+float anotherValue = 2.5f;
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (declaration
+    (type_descriptor
+      (primitive_type
+        (int_keyword)))
+    (identifier)
+    (primary_expression
+      (number_literal)))
+  (declaration
+    (type_descriptor
+      (primitive_type
+        (float_keyword)))
+    (identifier)
+    (primary_expression
+      (number_literal)))
+  (declaration
+    (type_descriptor
+      (primitive_type
+        (float_keyword)))
+    (identifier)
+    (primary_expression
+      (number_literal)))
+  (declaration
+    (type_descriptor
+      (primitive_type
+        (float_keyword)))
+    (identifier)
+    (primary_expression
+      (number_literal)))
+  (declaration
+    (type_descriptor
+      (primitive_type
+        (double_keyword)))
+    (identifier)
+    (primary_expression
+      (number_literal)))
+  (declaration
+    (type_descriptor
+      (primitive_type
+        (float_keyword)))
+    (identifier)
+    (primary_expression
+      (number_literal))))
+
+================================================================================
+String literals
+================================================================================
+
+string single = 'single quotes';
+string double = "double quotes";
+string multiline = """
+This is a
+multiline string
+""";
+string escaped = "Line 1\nLine 2\tTabbed";
+
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (declaration
+    (type_descriptor
+      (type_identifier))
+    (identifier)
+    (primary_expression
+      (string_literal)))
+  (declaration
+    (type_descriptor
+      (type_identifier))
+    (identifier)
+    (primary_expression
+      (string_literal)))
+  (declaration
+    (type_descriptor
+      (type_identifier))
+    (identifier)
+    (primary_expression
+      (string_literal)))
+  (declaration
+    (type_descriptor
+      (type_identifier))
+    (identifier)
+    (primary_expression
+      (string_literal))))
+
+================================================================================
+Bit literals
+================================================================================
+
+int binary = 0b1010;
+int octal = 0o755;
+int decimal = 0d123;
+int hex = 0xFF00AB;
+
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (declaration
+    (type_descriptor
+      (primitive_type
+        (int_keyword)))
+    (identifier)
+    (primary_expression
+      (number_literal)))
+  (declaration
+    (type_descriptor
+      (primitive_type
+        (int_keyword)))
+    (identifier)
+    (primary_expression
+      (number_literal)))
+  (declaration
+    (type_descriptor
+      (primitive_type
+        (int_keyword)))
+    (identifier)
+    (primary_expression
+      (number_literal)))
+  (declaration
+    (type_descriptor
+      (primitive_type
+        (int_keyword)))
+    (identifier)
+    (primary_expression
+      (number_literal))))
+
+================================================================================
+Boolean and null literals
+================================================================================
+
+bool yes = true;
+bool no = false;
+Object@ nothing = null;
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (declaration
+    (type_descriptor
+      (primitive_type
+        (bool_keyword)))
+    (identifier)
+    (primary_expression
+      (boolean_literal
+        (true_keyword))))
+  (declaration
+    (type_descriptor
+      (primitive_type
+        (bool_keyword)))
+    (identifier)
+    (primary_expression
+      (boolean_literal
+        (false_keyword))))
+  (declaration
+    (type_descriptor
+      (type_identifier)
+      (handle_suffix))
+    (identifier)
+    (primary_expression
+      (null_literal
+        (null_keyword)))))

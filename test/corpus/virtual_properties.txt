@@ -1,0 +1,95 @@
+================================================================================
+Basic virtual properties
+================================================================================
+
+class WithVirtProps {
+    int value {
+        get { return 0; }
+        set { }
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (class_definition
+    (class_keyword)
+    (type_identifier)
+    (class_body
+      (virtual_property_declaration
+        (type_descriptor
+          (primitive_type
+            (int_keyword)))
+        (identifier)
+        (accessor_declaration
+          (get_keyword)
+          (compound_statement
+            (return_statement
+              (return_keyword)
+              (primary_expression
+                (number_literal)))))
+        (accessor_declaration
+          (set_keyword)
+          (compound_statement))))))
+
+================================================================================
+Virtual properties with attributes
+================================================================================
+
+class WithComplexVirtProps {
+    private float& reference {
+        get const final { return ref; }
+        set override;
+    }
+    
+    protected const bool flag {
+        get;
+        set const property { }
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (class_definition
+    (class_keyword)
+    (type_identifier)
+    (class_body
+      (virtual_property_declaration
+        (access_specifier
+          (private_keyword))
+        (type_descriptor
+          (primitive_type
+            (float_keyword)))
+        (reference_operator)
+        (identifier)
+        (accessor_declaration
+          (get_keyword)
+          (const_keyword)
+          (function_attribute
+            (final_keyword))
+          (compound_statement
+            (return_statement
+              (return_keyword)
+              (primary_expression
+                (identifier)))))
+        (accessor_declaration
+          (set_keyword)
+          (function_attribute
+            (override_keyword))))
+      (virtual_property_declaration
+        (access_specifier
+          (protected_keyword))
+        (type_descriptor
+          (const_keyword)
+          (primitive_type
+            (bool_keyword)))
+        (identifier)
+        (accessor_declaration
+          (get_keyword))
+        (accessor_declaration
+          (set_keyword)
+          (const_keyword)
+          (function_attribute
+            (property_keyword))
+          (compound_statement))))))

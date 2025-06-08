@@ -1,0 +1,197 @@
+================================================================================
+Basic class declarations
+================================================================================
+
+class BasicClass;
+class EmptyClass { }
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (class_definition
+    (class_keyword)
+    (type_identifier))
+  (class_definition
+    (class_keyword)
+    (type_identifier)
+    (class_body)))
+
+================================================================================
+Class with inheritance
+================================================================================
+
+class Derived : Base { }
+class MultiInherit : Base1, Base2, Base3 { }
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (class_definition
+    (class_keyword)
+    (type_identifier)
+    (base_class_clause
+      (qualified_type_identifier
+        (type_identifier)))
+    (class_body))
+  (class_definition
+    (class_keyword)
+    (type_identifier)
+    (base_class_clause
+      (qualified_type_identifier
+        (type_identifier))
+      (qualified_type_identifier
+        (type_identifier))
+      (qualified_type_identifier
+        (type_identifier)))
+    (class_body)))
+
+================================================================================
+Class with attributes
+================================================================================
+
+shared class SharedClass { }
+external class ExternalClass;
+abstract class AbstractClass { }
+final class FinalClass { }
+shared external class SharedExternalClass { }
+shared abstract final class ComplexClass { }
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (class_definition
+    (class_attributes
+      (shared_keyword))
+    (class_keyword)
+    (type_identifier)
+    (class_body))
+  (class_definition
+    (class_attributes
+      (external_keyword))
+    (class_keyword)
+    (type_identifier))
+  (class_definition
+    (class_attributes
+      (abstract_keyword))
+    (class_keyword)
+    (type_identifier)
+    (class_body))
+  (class_definition
+    (class_attributes
+      (final_keyword))
+    (class_keyword)
+    (type_identifier)
+    (class_body))
+  (class_definition
+    (class_attributes
+      (shared_keyword))
+    (class_attributes
+      (external_keyword))
+    (class_keyword)
+    (type_identifier)
+    (class_body))
+  (class_definition
+    (class_attributes
+      (shared_keyword))
+    (class_attributes
+      (abstract_keyword))
+    (class_attributes
+      (final_keyword))
+    (class_keyword)
+    (type_identifier)
+    (class_body)))
+
+================================================================================
+Class with members
+================================================================================
+
+class CompleteClass {
+    private int privateField;
+    protected float protectedField;
+    bool publicField;
+
+    void method() {}
+    int getValue() { return 42; }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (class_definition
+    (class_keyword)
+    (type_identifier)
+    (class_body
+      (declaration
+        (access_specifier
+          (private_keyword))
+        (type_descriptor
+          (primitive_type
+            (int_keyword)))
+        (identifier))
+      (declaration
+        (access_specifier
+          (protected_keyword))
+        (type_descriptor
+          (primitive_type
+            (float_keyword)))
+        (identifier))
+      (declaration
+        (type_descriptor
+          (primitive_type
+            (bool_keyword)))
+        (identifier))
+      (function_definition
+        (type_descriptor
+          (primitive_type
+            (void_keyword)))
+        (function_declarator
+          (identifier)
+          (parameter_list))
+        (compound_statement))
+      (function_definition
+        (type_descriptor
+          (primitive_type
+            (int_keyword)))
+        (function_declarator
+          (identifier)
+          (parameter_list))
+        (compound_statement
+          (return_statement
+            (return_keyword)
+            (primary_expression
+              (number_literal))))))))
+
+================================================================================
+Class with constructors and destructors
+================================================================================
+
+class WithConstructor {
+    WithConstructor() { }
+    WithConstructor(int x) { }
+    ~WithConstructor() { }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (class_definition
+    (class_keyword)
+    (type_identifier)
+    (class_body
+      (constructor_definition
+        (identifier)
+        (parameter_list)
+        (compound_statement))
+      (constructor_definition
+        (identifier)
+        (parameter_list
+          (parameter_declaration
+            (type_descriptor
+              (primitive_type
+                (int_keyword)))
+            (identifier)))
+        (compound_statement))
+      (destructor_definition
+        (identifier)
+        (parameter_list)
+        (compound_statement)))))

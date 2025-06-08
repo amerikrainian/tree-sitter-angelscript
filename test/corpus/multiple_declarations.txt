@@ -1,0 +1,89 @@
+================================================================================
+Multiple simple declarations
+================================================================================
+
+int a, b, c;
+float x, y, z;
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (declaration
+    type: (type_descriptor
+      type: (primitive_type
+        (int_keyword)))
+    declarator: (identifier)
+    declarator: (identifier)
+    declarator: (identifier))
+  (declaration
+    type: (type_descriptor
+      type: (primitive_type
+        (float_keyword)))
+    declarator: (identifier)
+    declarator: (identifier)
+    declarator: (identifier)))
+
+================================================================================
+Multiple declarations with initialization
+================================================================================
+
+int x = 1, y = 2, z;
+int initialized = 5, uninitialized, another = 10;
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (declaration
+    type: (type_descriptor
+      type: (primitive_type
+        (int_keyword)))
+    declarator: (identifier)
+    value: (primary_expression
+      (number_literal))
+    declarator: (identifier)
+    value: (primary_expression
+      (number_literal))
+    declarator: (identifier))
+  (declaration
+    type: (type_descriptor
+      type: (primitive_type
+        (int_keyword)))
+    declarator: (identifier)
+    value: (primary_expression
+      (number_literal))
+    declarator: (identifier)
+    declarator: (identifier)
+    value: (primary_expression
+      (number_literal))))
+
+================================================================================
+Multiple declarations with modifiers
+================================================================================
+
+private int p1, p2 = 100;
+const int c1 = 1, c2 = 2;
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (declaration
+    (access_specifier
+      (private_keyword))
+    type: (type_descriptor
+      type: (primitive_type
+        (int_keyword)))
+    declarator: (identifier)
+    declarator: (identifier)
+    value: (primary_expression
+      (number_literal)))
+  (declaration
+    type: (type_descriptor
+      (const_keyword)
+      type: (primitive_type
+        (int_keyword)))
+    declarator: (identifier)
+    value: (primary_expression
+      (number_literal))
+    declarator: (identifier)
+    value: (primary_expression
+      (number_literal))))

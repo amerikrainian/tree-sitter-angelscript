@@ -1,0 +1,112 @@
+================================================================================
+Basic primitive type declarations
+================================================================================
+
+void v;
+bool b;
+int i;
+int8 i8;
+int16 i16;
+int32 i32;
+int64 i64;
+uint ui;
+uint8 ui8;
+uint16 ui16;
+uint32 ui32;
+uint64 ui64;
+float f;
+double d;
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (declaration
+    type: (type_descriptor
+      type: (primitive_type
+        (void_keyword)))
+    declarator: (identifier))
+  (declaration
+    type: (type_descriptor
+      type: (primitive_type
+        (bool_keyword)))
+    declarator: (identifier))
+  (declaration
+    type: (type_descriptor
+      type: (primitive_type
+        (int_keyword)))
+    declarator: (identifier))
+  (declaration
+    type: (type_descriptor
+      type: (primitive_type
+        (int8_keyword)))
+    declarator: (identifier))
+  (declaration
+    type: (type_descriptor
+      type: (primitive_type
+        (int16_keyword)))
+    declarator: (identifier))
+  (declaration
+    type: (type_descriptor
+      type: (primitive_type
+        (int32_keyword)))
+    declarator: (identifier))
+  (declaration
+    type: (type_descriptor
+      type: (primitive_type
+        (int64_keyword)))
+    declarator: (identifier))
+  (declaration
+    type: (type_descriptor
+      type: (primitive_type
+        (uint_keyword)))
+    declarator: (identifier))
+  (declaration
+    type: (type_descriptor
+      type: (primitive_type
+        (uint8_keyword)))
+    declarator: (identifier))
+  (declaration
+    type: (type_descriptor
+      type: (primitive_type
+        (uint16_keyword)))
+    declarator: (identifier))
+  (declaration
+    type: (type_descriptor
+      type: (primitive_type
+        (uint32_keyword)))
+    declarator: (identifier))
+  (declaration
+    type: (type_descriptor
+      type: (primitive_type
+        (uint64_keyword)))
+    declarator: (identifier))
+  (declaration
+    type: (type_descriptor
+      type: (primitive_type
+        (float_keyword)))
+    declarator: (identifier))
+  (declaration
+    type: (type_descriptor
+      type: (primitive_type
+        (double_keyword)))
+    declarator: (identifier)))
+
+================================================================================
+Special types
+================================================================================
+
+auto a;
+? wildcard;
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (declaration
+    type: (type_descriptor
+      type: (auto_type
+        (auto_keyword)))
+    declarator: (identifier))
+  (declaration
+    type: (type_descriptor
+      type: (wildcard_type))
+    declarator: (identifier)))
