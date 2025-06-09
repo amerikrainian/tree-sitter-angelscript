@@ -1,5 +1,5 @@
 /**
- * @file Parser for Angelscript
+ * @file Parser for Angelscript (Refined)
  * @author Amerikrainian <olegjpittman@gmail.com>
  * @license MIT
  */
@@ -39,7 +39,6 @@ module.exports = grammar({
   conflicts: ($) => [
     [$.qualified_type_identifier, $.qualified_identifier],
     [$.type_specifier, $.qualified_type_identifier],
-    [$.type_specifier, $.qualified_identifier, $.qualified_type_identifier],
     [$.type_specifier, $.qualified_identifier, $.qualified_type_identifier],
     [$.type_qualifier, $.class_attributes],
     [$._top_level_item, $.type_specifier],
@@ -118,6 +117,7 @@ module.exports = grammar({
         choice(seq("//", /.*/), seq("/*", /[^*]*\*+([^/*][^*]*\*+)*/, "/"))
       ),
 
+    // Keywords
     if_keyword: (_) => "if",
     else_keyword: (_) => "else",
     switch_keyword: (_) => "switch",
@@ -185,54 +185,54 @@ module.exports = grammar({
     cast_keyword: (_) => "cast",
     function_keyword: (_) => "function",
     reference_operator: (_) => "&",
-    // Seen with refs
     in_keyword: (_) => "in",
     out_keyword: (_) => "out",
     in_out_keyword: (_) => "inout",
 
-    plus_op: (_) => token("+"),
-    sub_op: (_) => token("-"),
-    mul_op: (_) => token("*"),
-    div_op: (_) => token("/"),
-    mod_op: (_) => token("%"),
-    exp_op: (_) => token("**"),
+    // Simplify operators - remove token() wrapper
+    plus_op: (_) => "+",
+    sub_op: (_) => "-",
+    mul_op: (_) => "*",
+    div_op: (_) => "/",
+    mod_op: (_) => "%",
+    exp_op: (_) => "**",
 
-    not_op: (_) => token("!"),
-    bitnot_op: (_) => token("~"),
-    inc_op: (_) => token("++"),
-    dec_op: (_) => token("--"),
+    not_op: (_) => "!",
+    bitnot_op: (_) => "~",
+    inc_op: (_) => "++",
+    dec_op: (_) => "--",
 
-    lt_op: (_) => token("<"),
-    lte_op: (_) => token("<="),
-    gt_op: (_) => token(">"),
-    gte_op: (_) => token(">="),
-    eq_op: (_) => token("=="),
-    neq_op: (_) => token("!="),
+    lt_op: (_) => "<",
+    lte_op: (_) => "<=",
+    gt_op: (_) => ">",
+    gte_op: (_) => ">=",
+    eq_op: (_) => "==",
+    neq_op: (_) => "!=",
 
-    andand_op: (_) => token("&&"),
-    oror_op: (_) => token("||"),
-    xorxor_op: (_) => token("^^"),
+    andand_op: (_) => "&&",
+    oror_op: (_) => "||",
+    xorxor_op: (_) => "^^",
 
-    bitand_op: (_) => token("&"),
-    bitor_op: (_) => token("|"),
-    bitxor_op: (_) => token("^"),
-    lsl_op: (_) => token("<<"),
-    lsr_op: (_) => token(">>"),
-    asr_op: (_) => token(">>>"),
+    bitand_op: (_) => "&",
+    bitor_op: (_) => "|",
+    bitxor_op: (_) => "^",
+    lsl_op: (_) => "<<",
+    lsr_op: (_) => ">>",
+    asr_op: (_) => ">>>",
 
-    equal_op: (_) => token("="),
-    plus_equal_op: (_) => token("+="),
-    sub_equal_op: (_) => token("-="),
-    mul_equal_op: (_) => token("*="),
-    div_equal_op: (_) => token("/="),
-    mod_equal_op: (_) => token("%="),
-    exp_equal_op: (_) => token("**="),
-    bitand_equal_op: (_) => token("&="),
-    bitor_equal_op: (_) => token("|="),
-    bitxor_equal_op: (_) => token("^="),
-    lsl_equal_op: (_) => token("<<="),
-    lsr_equal_op: (_) => token(">>="),
-    asr_equal_op: (_) => token(">>>="),
+    equal_op: (_) => "=",
+    plus_equal_op: (_) => "+=",
+    sub_equal_op: (_) => "-=",
+    mul_equal_op: (_) => "*=",
+    div_equal_op: (_) => "/=",
+    mod_equal_op: (_) => "%=",
+    exp_equal_op: (_) => "**=",
+    bitand_equal_op: (_) => "&=",
+    bitor_equal_op: (_) => "|=",
+    bitxor_equal_op: (_) => "^=",
+    lsl_equal_op: (_) => "<<=",
+    lsr_equal_op: (_) => ">>=",
+    asr_equal_op: (_) => ">>>=",
 
     identifier: (_) => /[a-zA-Z_][a-zA-Z0-9_]*/,
 
@@ -250,8 +250,6 @@ module.exports = grammar({
           /0[dD][0-9]+/,
 
           // Floating point patterns (with optional 'f'/'F' suffix)
-
-          // Pattern: digits.digits[exponent][f]
           seq(
             /[0-9]+/,
             ".",
@@ -260,7 +258,6 @@ module.exports = grammar({
             optional(/[fF]/)
           ),
 
-          // Pattern: digits.[exponent][f]
           seq(
             /[0-9]+/,
             ".",
@@ -268,7 +265,6 @@ module.exports = grammar({
             optional(/[fF]/)
           ),
 
-          // Pattern: .digits[exponent][f]
           seq(
             ".",
             /[0-9]+/,
@@ -276,10 +272,9 @@ module.exports = grammar({
             optional(/[fF]/)
           ),
 
-          // Pattern: digits exponent [f] (no decimal point)
           seq(/[0-9]+/, /[eE]/, optional(/[+-]/), /[0-9]+/, optional(/[fF]/)),
 
-          // Plain integers (no suffixes)
+          // Plain integers
           /[0-9]+/
         )
       );
@@ -336,8 +331,14 @@ module.exports = grammar({
     parenthesized_declarator: ($) =>
       prec.dynamic(PREC.PAREN_DECLARATOR, seq("(", $._declarator, ")")),
 
+    // Simplify attributed declarator to use a single attributes field
     attributed_declarator: ($) =>
-      prec.right(seq($._declarator, repeat1($.attribute_declaration))),
+      prec.right(
+        seq(
+          $._declarator,
+          field("attributes", repeat1($.attribute_declaration))
+        )
+      ),
 
     reference_declarator: ($) =>
       prec.dynamic(
@@ -369,7 +370,7 @@ module.exports = grammar({
           field("declarator", $._declarator),
           field("parameters", $.parameter_list),
           optional($.const_keyword),
-          repeat($.function_attribute)
+          field("attributes", repeat($.function_attribute))
         )
       ),
 
@@ -418,11 +419,12 @@ module.exports = grammar({
 
     access_specifier: ($) => choice($.private_keyword, $.protected_keyword),
 
+    // Simplify type descriptor - combine suffixes
     type_descriptor: ($) =>
       seq(
         optional($.const_keyword),
         field("type", $.type_specifier),
-        repeat(choice($.array_suffix, $.handle_suffix))
+        field("suffixes", repeat(choice($.array_suffix, $.handle_suffix)))
       ),
 
     array_suffix: (_) => seq("[", "]"),
@@ -495,10 +497,11 @@ module.exports = grammar({
 
     variadic_parameter: (_) => "...",
 
+    // Simplify function definition with combined attributes
     function_definition: ($) =>
       seq(
         optional($.attribute_specifier),
-        repeat($._shared_external),
+        field("modifiers", repeat($._shared_external)),
         optional($.access_specifier),
         field("return_type", $.type_descriptor),
         optional($.reference_operator),
@@ -519,9 +522,10 @@ module.exports = grammar({
         $.property_keyword
       ),
 
+    // Simplify class definition with combined attributes
     class_definition: ($) =>
       seq(
-        repeat($.class_attributes),
+        field("attributes", repeat($.class_attributes)),
         $.class_keyword,
         field("name", $._type_identifier),
         choice(
@@ -559,7 +563,7 @@ module.exports = grammar({
         optional($.access_specifier),
         field("name", $.identifier),
         field("parameters", $.parameter_list),
-        repeat($.function_attribute),
+        field("attributes", repeat($.function_attribute)),
         choice(
           field("body", $.compound_statement),
           seq("=", choice("default", $.delete_keyword), ";"),
@@ -573,13 +577,13 @@ module.exports = grammar({
         "~",
         field("name", $.identifier),
         field("parameters", $.parameter_list),
-        repeat($.function_attribute),
+        field("attributes", repeat($.function_attribute)),
         choice(field("body", $.compound_statement), ";")
       ),
 
     interface_definition: ($) =>
       seq(
-        repeat($._shared_external),
+        field("modifiers", repeat($._shared_external)),
         $.interface_keyword,
         field("name", $._type_identifier),
         choice(
@@ -622,13 +626,13 @@ module.exports = grammar({
       seq(
         field("kind", choice($.get_keyword, $.set_keyword)),
         optional($.const_keyword),
-        repeat($.function_attribute),
+        field("attributes", repeat($.function_attribute)),
         choice($.compound_statement, ";")
       ),
 
     enum_specifier: ($) =>
       seq(
-        repeat($._shared_external),
+        field("modifiers", repeat($._shared_external)),
         $.enum_keyword,
         field("name", $._type_identifier),
         choice(field("body", $.enumerator_list), ";")
@@ -653,7 +657,7 @@ module.exports = grammar({
 
     funcdef_declaration: ($) =>
       seq(
-        repeat($._shared_external),
+        field("modifiers", repeat($._shared_external)),
         $.funcdef_keyword,
         field("return_type", $.type_descriptor),
         optional($.reference_operator),
@@ -692,7 +696,7 @@ module.exports = grammar({
         field("name", $.identifier),
         field("parameters", $.parameter_list),
         optional($.const_keyword),
-        repeat($.function_attribute),
+        field("attributes", repeat($.function_attribute)),
         "from",
         field("module", $.string_literal),
         ";"
@@ -851,7 +855,7 @@ module.exports = grammar({
         $.subscript_expression,
         $.cast_expression,
         $.primary_expression,
-        $.handle_dereference_expression
+        $.handle_expression
       ),
 
     primary_expression: ($) =>
@@ -890,11 +894,9 @@ module.exports = grammar({
         )
       ),
 
-    handle_dereference_expression: ($) =>
-      prec.right(
-        PREC.UNARY,
-        seq(field("operator", "@"), field("argument", $.expression))
-      ),
+    // Rename for clarity
+    handle_expression: ($) =>
+      prec.right(PREC.UNARY, seq("@", field("argument", $.expression))),
 
     assignment_expression: ($) =>
       prec.right(
@@ -930,7 +932,7 @@ module.exports = grammar({
         $.field_expression,
         $.subscript_expression,
         $.parenthesized_expression,
-        $.handle_dereference_expression
+        $.handle_expression
       ),
 
     unary_expression: ($) =>
@@ -961,8 +963,8 @@ module.exports = grammar({
         )
       ),
 
+    // Consolidated binary expression
     binary_expression: ($) => {
-      /** @type {[Rule, number][]} */
       const table = [
         [$.exp_op, PREC.POWER],
         [$.mul_op, PREC.MULTIPLY],
@@ -979,44 +981,30 @@ module.exports = grammar({
         [$.gte_op, PREC.RELATIONAL],
         [$.eq_op, PREC.EQUAL],
         [$.neq_op, PREC.EQUAL],
+        [$.is_operator, PREC.EQUAL],
+        [$.not_is_operator, PREC.EQUAL],
         [$.bitand_op, PREC.BITWISE_AND],
         [$.bitxor_op, PREC.EXCLUSIVE_OR],
         [$.bitor_op, PREC.INCLUSIVE_OR],
         [$.andand_op, PREC.LOGICAL_AND],
-        [$.xorxor_op, PREC.LOGICAL_XOR],
-        [$.oror_op, PREC.LOGICAL_OR],
-      ];
-
-      /** @type {[Rule, number][]} */
-      const semanticOps = [
-        [$.is_operator, PREC.EQUAL],
-        [$.not_is_operator, PREC.EQUAL],
         [$.and_operator, PREC.LOGICAL_AND],
+        [$.xorxor_op, PREC.LOGICAL_XOR],
         [$.xor_operator, PREC.LOGICAL_XOR],
+        [$.oror_op, PREC.LOGICAL_OR],
         [$.or_operator, PREC.LOGICAL_OR],
       ];
 
       return choice(
-        ...table.map(([operator, precedence]) => {
-          return prec.left(
+        ...table.map(([operator, precedence]) =>
+          prec.left(
             precedence,
             seq(
               field("left", $.expression),
               field("operator", operator),
               field("right", $.expression)
             )
-          );
-        }),
-        ...semanticOps.map(([operator, precedence]) => {
-          return prec.left(
-            precedence,
-            seq(
-              field("left", $.expression),
-              field("operator", operator),
-              field("right", $.expression)
-            )
-          );
-        })
+          )
+        )
       );
     },
 
@@ -1102,7 +1090,7 @@ module.exports = grammar({
     attribute_argument_list: ($) => seq("(", commaSep($.expression), ")"),
 
     attributed_statement: ($) =>
-      seq(repeat1($.attribute_declaration), $.statement),
+      seq(field("attributes", repeat1($.attribute_declaration)), $.statement),
   },
 });
 

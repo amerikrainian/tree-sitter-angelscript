@@ -33,7 +33,7 @@ external void externalFunc();
           argument: (primary_expression
             (number_literal))))))
   (function_definition
-    (shared_keyword)
+    modifiers: (shared_keyword)
     return_type: (type_descriptor
       type: (primitive_type
         (void_keyword)))
@@ -41,7 +41,7 @@ external void externalFunc();
       declarator: (identifier)
       parameters: (parameter_list)))
   (function_definition
-    (external_keyword)
+    modifiers: (external_keyword)
     return_type: (type_descriptor
       type: (primitive_type
         (void_keyword)))
@@ -107,7 +107,7 @@ bar& foo() {
   (function_definition
     return_type: (type_descriptor
       type: (type_identifier)
-      (handle_suffix))
+      suffixes: (handle_suffix))
     declarator: (function_declarator
       declarator: (identifier)
       parameters: (parameter_list))
@@ -162,17 +162,17 @@ void d(obj@ a) {
       (expression_statement
         (unary_expression
           (not_op)
-          (handle_dereference_expression
+          (handle_expression
             (primary_expression
               (identifier)))))
       (expression_statement
-        (handle_dereference_expression
+        (handle_expression
           (field_expression
             (primary_expression
               (identifier))
             (field_identifier))))
       (expression_statement
-        (handle_dereference_expression
+        (handle_expression
           (call_expression
             (primary_expression
               (identifier))
@@ -181,16 +181,16 @@ void d(obj@ a) {
                 (primary_expression
                   (identifier)))))))
       (expression_statement
-        (handle_dereference_expression
-          (handle_dereference_expression
+        (handle_expression
+          (handle_expression
             (primary_expression
               (identifier)))))
       (expression_statement
         (binary_expression
-          (handle_dereference_expression
+          (handle_expression
             (primary_expression
               (identifier)))
           (plus_op)
-          (handle_dereference_expression
+          (handle_expression
             (primary_expression
               (identifier))))))))

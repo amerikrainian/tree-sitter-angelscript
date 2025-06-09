@@ -66,7 +66,7 @@
         "named": true
       },
       {
-        "type": "handle_dereference_expression",
+        "type": "handle_expression",
         "named": true
       },
       {
@@ -202,6 +202,16 @@
     "type": "accessor_declaration",
     "named": true,
     "fields": {
+      "attributes": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "function_attribute",
+            "named": true
+          }
+        ]
+      },
       "kind": {
         "multiple": false,
         "required": true,
@@ -227,10 +237,6 @@
         },
         {
           "type": "const_keyword",
-          "named": true
-        },
-        {
-          "type": "function_attribute",
           "named": true
         }
       ]
@@ -321,7 +327,7 @@
             "named": true
           },
           {
-            "type": "handle_dereference_expression",
+            "type": "handle_expression",
             "named": true
           },
           {
@@ -486,17 +492,24 @@
   {
     "type": "attributed_declarator",
     "named": true,
-    "fields": {},
+    "fields": {
+      "attributes": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "attribute_declaration",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
           "type": "_declarator",
-          "named": true
-        },
-        {
-          "type": "attribute_declaration",
           "named": true
         }
       ]
@@ -505,15 +518,22 @@
   {
     "type": "attributed_statement",
     "named": true,
-    "fields": {},
+    "fields": {
+      "attributes": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "attribute_declaration",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
-        {
-          "type": "attribute_declaration",
-          "named": true
-        },
         {
           "type": "statement",
           "named": true
@@ -893,6 +913,16 @@
     "type": "class_definition",
     "named": true,
     "fields": {
+      "attributes": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "class_attributes",
+            "named": true
+          }
+        ]
+      },
       "body": {
         "multiple": false,
         "required": false,
@@ -920,10 +950,6 @@
       "types": [
         {
           "type": "base_class_clause",
-          "named": true
-        },
-        {
-          "type": "class_attributes",
           "named": true
         },
         {
@@ -1030,6 +1056,16 @@
     "type": "constructor_definition",
     "named": true,
     "fields": {
+      "attributes": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "function_attribute",
+            "named": true
+          }
+        ]
+      },
       "body": {
         "multiple": false,
         "required": false,
@@ -1071,10 +1107,6 @@
         },
         {
           "type": "delete_keyword",
-          "named": true
-        },
-        {
-          "type": "function_attribute",
           "named": true
         }
       ]
@@ -1180,6 +1212,16 @@
     "type": "destructor_definition",
     "named": true,
     "fields": {
+      "attributes": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "function_attribute",
+            "named": true
+          }
+        ]
+      },
       "body": {
         "multiple": false,
         "required": false,
@@ -1212,15 +1254,11 @@
       }
     },
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": false,
       "types": [
         {
           "type": "access_specifier",
-          "named": true
-        },
-        {
-          "type": "function_attribute",
           "named": true
         }
       ]
@@ -1280,6 +1318,20 @@
           }
         ]
       },
+      "modifiers": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "external_keyword",
+            "named": true
+          },
+          {
+            "type": "shared_keyword",
+            "named": true
+          }
+        ]
+      },
       "name": {
         "multiple": false,
         "required": true,
@@ -1292,19 +1344,11 @@
       }
     },
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
           "type": "enum_keyword",
-          "named": true
-        },
-        {
-          "type": "external_keyword",
-          "named": true
-        },
-        {
-          "type": "shared_keyword",
           "named": true
         }
       ]
@@ -1529,6 +1573,20 @@
     "type": "funcdef_declaration",
     "named": true,
     "fields": {
+      "modifiers": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "external_keyword",
+            "named": true
+          },
+          {
+            "type": "shared_keyword",
+            "named": true
+          }
+        ]
+      },
       "name": {
         "multiple": false,
         "required": true,
@@ -1565,19 +1623,11 @@
       "required": true,
       "types": [
         {
-          "type": "external_keyword",
-          "named": true
-        },
-        {
           "type": "funcdef_keyword",
           "named": true
         },
         {
           "type": "reference_operator",
-          "named": true
-        },
-        {
-          "type": "shared_keyword",
           "named": true
         }
       ]
@@ -1618,6 +1668,16 @@
     "type": "function_declarator",
     "named": true,
     "fields": {
+      "attributes": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "function_attribute",
+            "named": true
+          }
+        ]
+      },
       "declarator": {
         "multiple": false,
         "required": true,
@@ -1640,15 +1700,11 @@
       }
     },
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": false,
       "types": [
         {
           "type": "const_keyword",
-          "named": true
-        },
-        {
-          "type": "function_attribute",
           "named": true
         }
       ]
@@ -1674,6 +1730,20 @@
         "types": [
           {
             "type": "function_declarator",
+            "named": true
+          }
+        ]
+      },
+      "modifiers": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "external_keyword",
+            "named": true
+          },
+          {
+            "type": "shared_keyword",
             "named": true
           }
         ]
@@ -1706,15 +1776,7 @@
           "named": true
         },
         {
-          "type": "external_keyword",
-          "named": true
-        },
-        {
           "type": "reference_operator",
-          "named": true
-        },
-        {
-          "type": "shared_keyword",
           "named": true
         }
       ]
@@ -1726,7 +1788,7 @@
     "fields": {}
   },
   {
-    "type": "handle_dereference_expression",
+    "type": "handle_expression",
     "named": true,
     "fields": {
       "argument": {
@@ -1736,16 +1798,6 @@
           {
             "type": "expression",
             "named": true
-          }
-        ]
-      },
-      "operator": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "@",
-            "named": false
           }
         ]
       }
@@ -1820,6 +1872,16 @@
     "type": "import_declaration",
     "named": true,
     "fields": {
+      "attributes": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "function_attribute",
+            "named": true
+          }
+        ]
+      },
       "module": {
         "multiple": false,
         "required": true,
@@ -1867,10 +1929,6 @@
       "types": [
         {
           "type": "const_keyword",
-          "named": true
-        },
-        {
-          "type": "function_attribute",
           "named": true
         },
         {
@@ -1936,6 +1994,20 @@
           }
         ]
       },
+      "modifiers": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "external_keyword",
+            "named": true
+          },
+          {
+            "type": "shared_keyword",
+            "named": true
+          }
+        ]
+      },
       "name": {
         "multiple": false,
         "required": true,
@@ -1956,15 +2028,7 @@
           "named": true
         },
         {
-          "type": "external_keyword",
-          "named": true
-        },
-        {
           "type": "interface_keyword",
-          "named": true
-        },
-        {
-          "type": "shared_keyword",
           "named": true
         }
       ]
@@ -2962,6 +3026,20 @@
     "type": "type_descriptor",
     "named": true,
     "fields": {
+      "suffixes": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "array_suffix",
+            "named": true
+          },
+          {
+            "type": "handle_suffix",
+            "named": true
+          }
+        ]
+      },
       "type": {
         "multiple": false,
         "required": true,
@@ -2974,19 +3052,11 @@
       }
     },
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": false,
       "types": [
         {
-          "type": "array_suffix",
-          "named": true
-        },
-        {
           "type": "const_keyword",
-          "named": true
-        },
-        {
-          "type": "handle_suffix",
           "named": true
         }
       ]

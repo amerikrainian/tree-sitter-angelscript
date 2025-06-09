@@ -15,17 +15,17 @@ shared external enum sharedExternalEnum;
     name: (type_identifier)
     body: (enumerator_list))
   (enum_specifier
-    (shared_keyword)
+    modifiers: (shared_keyword)
     (enum_keyword)
     name: (type_identifier)
     body: (enumerator_list))
   (enum_specifier
-    (external_keyword)
+    modifiers: (external_keyword)
     (enum_keyword)
     name: (type_identifier))
   (enum_specifier
-    (shared_keyword)
-    (external_keyword)
+    modifiers: (shared_keyword)
+    modifiers: (external_keyword)
     (enum_keyword)
     name: (type_identifier)))
 

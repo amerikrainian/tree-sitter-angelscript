@@ -273,7 +273,7 @@ void testUnary() {
           (type_identifier)
           (handle_suffix))
         (identifier)
-        (handle_dereference_expression
+        (handle_expression
           (primary_expression
             (identifier)))))))
 

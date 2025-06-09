@@ -14,29 +14,29 @@ const int[] carr;
     type: (type_descriptor
       type: (primitive_type
         (int_keyword))
-      (array_suffix))
+      suffixes: (array_suffix))
     declarator: (identifier))
   (declaration
     type: (type_descriptor
       type: (primitive_type
         (int_keyword))
-      (array_suffix)
-      (array_suffix))
+      suffixes: (array_suffix)
+      suffixes: (array_suffix))
     declarator: (identifier))
   (declaration
     type: (type_descriptor
       type: (primitive_type
         (int_keyword))
-      (array_suffix)
-      (array_suffix)
-      (array_suffix))
+      suffixes: (array_suffix)
+      suffixes: (array_suffix)
+      suffixes: (array_suffix))
     declarator: (identifier))
   (declaration
     type: (type_descriptor
       (const_keyword)
       type: (primitive_type
         (int_keyword))
-      (array_suffix))
+      suffixes: (array_suffix))
     declarator: (identifier)))
 
 ================================================================================
@@ -56,13 +56,13 @@ CustomType@ obj;
     type: (type_descriptor
       type: (primitive_type
         (int_keyword))
-      (handle_suffix))
+      suffixes: (handle_suffix))
     declarator: (identifier))
   (declaration
     type: (type_descriptor
       type: (primitive_type
         (int_keyword))
-      (handle_suffix
+      suffixes: (handle_suffix
         (const_keyword)))
     declarator: (identifier))
   (declaration
@@ -70,20 +70,20 @@ CustomType@ obj;
       (const_keyword)
       type: (primitive_type
         (int_keyword))
-      (handle_suffix))
+      suffixes: (handle_suffix))
     declarator: (identifier))
   (declaration
     type: (type_descriptor
       (const_keyword)
       type: (primitive_type
         (int_keyword))
-      (handle_suffix
+      suffixes: (handle_suffix
         (const_keyword)))
     declarator: (identifier))
   (declaration
     type: (type_descriptor
       type: (type_identifier)
-      (handle_suffix))
+      suffixes: (handle_suffix))
     declarator: (identifier)))
 
 ================================================================================
@@ -101,8 +101,8 @@ Namespace::Type[] nsarr;
     type: (type_descriptor
       type: (primitive_type
         (int_keyword))
-      (array_suffix)
-      (handle_suffix))
+      suffixes: (array_suffix)
+      suffixes: (handle_suffix))
     declarator: (identifier))
   (declaration
     type: (type_descriptor
@@ -112,7 +112,7 @@ Namespace::Type[] nsarr;
           (type_descriptor
             type: (primitive_type
               (int_keyword)))))
-      (handle_suffix))
+      suffixes: (handle_suffix))
     declarator: (identifier))
   (declaration
     type: (type_descriptor
@@ -120,5 +120,5 @@ Namespace::Type[] nsarr;
         (type_identifier)
         (scope_resolution)
         (type_identifier))
-      (array_suffix))
+      suffixes: (array_suffix))
     declarator: (identifier)))

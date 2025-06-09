@@ -107,7 +107,7 @@ Vector3 v = {1.0, 2.0, 3.0};
     type: (type_descriptor
       type: (primitive_type
         (int_keyword))
-      (array_suffix))
+      suffixes: (array_suffix))
     declarator: (identifier)
     value: (initializer_list
       (primary_expression
